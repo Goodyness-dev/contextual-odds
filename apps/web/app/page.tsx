@@ -335,7 +335,7 @@ export default function SignalDashboard() {
             <div className="w-3 h-3 bg-white rounded-full mercury-bg shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div>
             <div>
               <h1 className="text-2xl font-bold tracking-tight text-white mb-1 uppercase">
-                ELASTICO <span className="text-[#888] font-light">|</span> POWERED BY TXODDS
+                CONTEXTUAL ODDS <span className="text-[#888] font-light">|</span> POWERED BY TXODDS
               </h1>
               <p className="text-[10px] text-[#888] uppercase tracking-[0.2em]">
                 AGENTIC ORACLE &middot; TXLINE DATA &middot; SOLANA PROOFS
