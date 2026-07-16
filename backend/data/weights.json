@@ -1,0 +1,7 @@
+{
+  "redCardPenalty": 0.05,
+  "historicalTrendWeight": 0.1,
+  "baseConfidence": 0.75,
+  "timeDecayAggressiveness": 1,
+  "lastOptimized": "2026-07-02T18:12:10.540Z"
+}

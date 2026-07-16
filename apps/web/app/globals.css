@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Inktera';
+  src: url('/fonts/Inktera.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inktera Bold Display';
+  src: url('/fonts/Inktera.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-ink: #0A0A0A;
+  --color-paper: #FAFAF7;
+  --color-navy: #0C0D0E;
+  --color-gold: #FFD700;
+  --color-rule: #D4D0C8;
+  --color-muted: #6B6860;
+  --color-red: #E94D38;
+
+  --font-display: var(--font-playfair), Georgia, serif;
+  --font-body: var(--font-dm-sans), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+
+  /* Custom breakpoints */
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+
+  /* Container widths */
+  --container-content: 680px;
+  --container-page: 1120px;
+  --container-narrow: 480px;
+}
+
+@layer base {
+  :root {
+    --color-ink: #0A0A0A;
+    --color-paper: #FAFAF7;
+    --color-navy: #0C0D0E;
+    --color-gold: #FFD700;
+    --color-rule: #D4D0C8;
+    --color-muted: #6B6860;
+    --color-white: #FFFFFF;
+    --color-red: #E94D38;
+
+    --bg-page: var(--color-paper);
+    --bg-dark: var(--color-navy);
+    --bg-subtle: #F0EDE6;
+
+    --text-primary: var(--color-ink);
+    --text-secondary: var(--color-muted);
+    --text-inverse: var(--color-white);
+    --text-accent: var(--color-gold);
+
+    --border-rule: var(--color-rule);
+    --border-ink: var(--color-ink);
+
+    --btn-primary-bg: var(--color-navy);
+    --btn-primary-text: var(--color-gold);
+    --btn-primary-hover: #162440;
+
+    --status-qualified: #4A7C23;
+    --status-contention: #C17B1A;
+    --status-eliminated: var(--color-rule);
+
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+    --space-7: 48px;
+    --space-8: 64px;
+    --space-9: 96px;
+    --space-10: 128px;
+    --space-section: 96px;
+  }
+
+  body {
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.25;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='1 0 0 0 0, 1 0 0 0 0, 1 0 0 0 0, 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+}
+
+@layer components {
+  .pill-goal { background: #EAF3DE; color: #3B6D11; }
+  .pill-card { background: #FAEEDA; color: #854F0B; }
+  .pill-var  { background: #FAECE7; color: #993C1D; }
+  .pill-motm { background: #E6F1FB; color: #185FA5; }
+
+  .rule-thin   { border-top: 0.5px solid var(--border-rule); }
+  .rule-medium { border-top: 1px solid var(--border-rule); }
+  .rule-ink    { border: 1px solid var(--border-ink); }
+  .rule-heavy  { border-top: 3px solid var(--border-ink); }
+
+  .section-rule {
+    width: 100%;
+    border-top: 0.5px solid var(--color-rule);
+  }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-muted);
+  }
+
+  @keyframes mercury-bg {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .mercury-bg {
+    background: linear-gradient(90deg, #ffffff, #888888, #ffffff, #888888, #ffffff);
+    background-size: 400% 400%;
+    animation: mercury-bg 5s ease infinite;
+    color: #000;
+  }
+
+  @keyframes mercury-glow {
+    0% { border-color: rgba(255,255,255,0.2); box-shadow: 0 0 0px rgba(255,255,255,0); }
+    50% { border-color: rgba(255,255,255,0.6); box-shadow: 0 0 10px rgba(255,255,255,0.3); }
+    100% { border-color: rgba(255,255,255,0.2); box-shadow: 0 0 0px rgba(255,255,255,0); }
+  }
+
+  .mercury-glow-hover:hover {
+    animation: mercury-glow 2s ease-in-out infinite;
+  }
+}

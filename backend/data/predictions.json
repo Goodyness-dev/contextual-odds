@@ -1,0 +1,24 @@
+[
+  {
+    "id": "18185036-1783893850852",
+    "matchId": "18185036",
+    "homeTeam": "Morocco",
+    "awayTeam": "Canada",
+    "signal": "BUY",
+    "market": "under_3.5",
+    "entryOdds": 1.065,
+    "modelProbability": 0.99,
+    "marketProbability": 0.939,
+    "oddsDifference": 0.0549,
+    "timestamp": "2026-07-12T22:04:08.523Z",
+    "solanaTxSignature": "5RGiW7DL7e2rUS9SmG7hCLVsLRzAHKtMX3ZWjzijxWvNphZRZ8M289MdyEP8PDAYVGaejbTVMubYZAfyQrX4nQAC",
+    "explorerUrl": "https://explorer.solana.com/tx/5RGiW7DL7e2rUS9SmG7hCLVsLRzAHKtMX3ZWjzijxWvNphZRZ8M289MdyEP8PDAYVGaejbTVMubYZAfyQrX4nQAC?cluster=devnet",
+    "status": "CORRECT",
+    "explanation": "[QUANT_AGENT]: Poisson model target under 3.5.\n[SCOUT_AGENT]: \"[SCOUT]: The defensive line pushes up to catch the attackers offside.\" (NLP impact: +2.0%)\n[RISK_MANAGER]: Selected as most balanced trade. Score: 0.401.",
+    "finalScore": {
+      "home": 2,
+      "away": 1
+    },
+    "resolvedAt": "2026-07-12T22:04:13.120Z"
+  }
+]
