@@ -62,15 +62,29 @@ export class RiskManagerAgent {
 
       // Enforce Team Affinity to prevent stupid bets
       if (scoutReport.teamAffinity === 'HOME') {
-         if (market.includes('away_over') || market.includes('home_under') || market === 'under_3.5' || market === 'under_2.5') {
-            logger.debug({ market }, 'Risk Manager VETO: Market contradicts HOME attacking momentum');
-            continue;
+         if (scoutReport.impactScore < 0) { // Attacking momentum
+           if (market.includes('away_over') || market.includes('home_under') || market === 'under_3.5' || market === 'under_2.5') {
+              logger.debug({ market }, 'Risk Manager VETO: Market contradicts HOME attacking momentum');
+              continue;
+           }
+         } else if (scoutReport.impactScore > 0) { // Defensive momentum
+           if (market.includes('away_under') || market.includes('home_over') || market === 'over_3.5' || market === 'over_2.5') {
+              logger.debug({ market }, 'Risk Manager VETO: Market contradicts HOME defensive momentum');
+              continue;
+           }
          }
       }
       if (scoutReport.teamAffinity === 'AWAY') {
-         if (market.includes('home_over') || market.includes('away_under') || market === 'under_3.5' || market === 'under_2.5') {
-            logger.debug({ market }, 'Risk Manager VETO: Market contradicts AWAY attacking momentum');
-            continue;
+         if (scoutReport.impactScore < 0) { // Attacking momentum
+           if (market.includes('home_over') || market.includes('away_under') || market === 'under_3.5' || market === 'under_2.5') {
+              logger.debug({ market }, 'Risk Manager VETO: Market contradicts AWAY attacking momentum');
+              continue;
+           }
+         } else if (scoutReport.impactScore > 0) { // Defensive momentum
+           if (market.includes('home_under') || market.includes('away_over') || market === 'over_3.5' || market === 'over_2.5') {
+              logger.debug({ market }, 'Risk Manager VETO: Market contradicts AWAY defensive momentum');
+              continue;
+           }
          }
       }
 
@@ -111,12 +125,11 @@ export class RiskManagerAgent {
       if (scoutReport.teamAffinity === 'AWAY' && market.startsWith('home_')) impact = -Math.abs(impact);
       if (scoutReport.teamAffinity === 'HOME' && market.startsWith('away_')) impact = -Math.abs(impact);
       
-      // Calculate a proportional multiplier instead of a flat percentage shift
       let newsMultiplier = 1.0;
       if (isUnder) {
-        newsMultiplier = 1 - (impact * 0.40); // Up to 40% shift based on NLP
+        newsMultiplier = 1 + (impact * 0.40); // Positive impact (slower game) increases Under prob
       } else {
-        newsMultiplier = 1 + (impact * 0.40);
+        newsMultiplier = 1 - (impact * 0.40); // Negative impact (faster game) increases Over prob
       }
 
       const marketImpliedProb = 1 / marketOdds;

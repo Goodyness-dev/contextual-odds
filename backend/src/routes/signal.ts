@@ -71,6 +71,16 @@ router.post('/simulate/reset', (req, res) => {
   res.json({ success: true });
 });
 
+// POST /api/signal/simulate/preload
+router.post('/simulate/preload', async (req, res) => {
+  const { fixtureId } = req.body;
+  if (fixtureId) {
+    // Fire and forget to start the massive data fetch in the background
+    txLineClient.getHistoricalOdds(fixtureId).catch(err => logger.error({ err }, 'Failed preloading odds'));
+  }
+  res.json({ success: true });
+});
+
 // POST /api/signal/chat
 router.post('/chat', async (req, res) => {
   try {

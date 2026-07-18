@@ -1,0 +1,1 @@
+import { txLineClient } from './txline-client'; txLineClient.getHistoricalOdds(18185036).then(() => { const updates = (txLineClient as any).historicalOddsCache; const types = new Set(updates.map((u: any) => u.SuperOddsType)); console.log([...types]); })

@@ -156,4 +156,9 @@
   .mercury-glow-hover:hover {
     animation: mercury-glow 2s ease-in-out infinite;
   }
+
+  @keyframes slideDown {
+    from { max-height: 0; opacity: 0; }
+    to { max-height: 1000px; opacity: 1; }
+  }
 }

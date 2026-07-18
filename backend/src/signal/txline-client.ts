@@ -1,4 +1,6 @@
 import axios from 'axios';
+import fs from 'fs';
+import path from 'path';
 import { NETWORK_CONFIG } from './signal-config';
 import { getAuthHeaders, clearAuthCache } from './txline-auth';
 import { logger } from '../lib/logger';
@@ -181,9 +183,23 @@ export class TxLineClient {
     try {
       if (!this.historicalOddsCache) {
         logger.info(`Fetching massive historical updates array for fixture ${fixtureId} (only happens once)...`);
-        const client = await this.getClient();
-        const res = await client.get(`/odds/updates/${fixtureId}`);
-        this.historicalOddsCache = res.data;
+        try {
+          const localPath = path.join(process.cwd(), 'raw-txodds.json');
+          if (fs.existsSync(localPath)) {
+            logger.info('Loading TxOdds payload from local raw-txodds.json for instant start...');
+            const fileData = await fs.promises.readFile(localPath, 'utf8');
+            this.historicalOddsCache = JSON.parse(fileData);
+          } else {
+            const client = await this.getClient();
+            const res = await client.get(`/odds/updates/${fixtureId}`);
+            this.historicalOddsCache = res.data;
+          }
+        } catch (e: any) {
+          logger.warn({ err: e.message }, 'Failed to load local raw-txodds.json, falling back to network fetch');
+          const client = await this.getClient();
+          const res = await client.get(`/odds/updates/${fixtureId}`);
+          this.historicalOddsCache = res.data;
+        }
       }
       
       const updates = this.historicalOddsCache;

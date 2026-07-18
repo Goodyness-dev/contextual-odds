@@ -1,0 +1,1 @@
+import { txLineClient } from './txline-client'; txLineClient.getHistoricalOdds(18185036).then(() => { const updates = (txLineClient as any).historicalOddsCache; const participantUpdates = updates.filter((u: any) => u.SuperOddsType === 'OVERUNDER_PARTICIPANT_GOALS'); console.log(JSON.stringify(participantUpdates.slice(0, 4), null, 2)); })

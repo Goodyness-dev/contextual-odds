@@ -1,6 +1,27 @@
 import { ProbabilityResult } from './probability-engine';
 import { SIGNAL_CONFIG } from './signal-config';
 
+export interface ReasoningStep {
+  agent: 'TXODDS' | 'QUANT' | 'SCOUT' | 'RISK' | 'SOLANA';
+  label: string;
+  value: number;       // probability at this stage
+  detail: string;      // human-readable explanation
+}
+
+export interface ReasoningChain {
+  steps: ReasoningStep[];
+  rawMarketOdds: number;
+  rawMarketProb: number;
+  poissonModelProb: number;
+  blendedBaseProb: number;
+  nlpMultiplier: number;
+  nlpImpactPercent: number;
+  finalAdjustedProb: number;
+  finalTrueOdds: number;
+  edgePercent: number;
+  kellyFraction: number;
+}
+
 export interface DivergenceResult {
   matchId: string;
   homeTeam: string;
@@ -18,6 +39,7 @@ export interface DivergenceResult {
   kellyFraction: number;
   timestamp: string;
   matchMinute: number;
+  reasoningChain?: ReasoningChain;
 }
 
 export function oddsToImpliedProbability(decimalOdds: number): number {

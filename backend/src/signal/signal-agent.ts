@@ -1,6 +1,6 @@
 import { txLineClient } from './txline-client';
 
-import { scoutAgent } from './agents/agent-scout';
+import { scoutAgent } from './agents/agent-scout.demo';
 import { quantAgent } from './agents/agent-quant';
 import { riskManagerAgent } from './agents/agent-risk';
 import { writeSignalToSolana } from './solana-writer';

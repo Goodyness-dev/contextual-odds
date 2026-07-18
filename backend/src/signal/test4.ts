@@ -1,0 +1,1 @@
+import { txLineClient } from './txline-client'; txLineClient.getHistoricalOdds(18185036).then(() => { const updates = (txLineClient as any).historicalOddsCache; const globalUpdates = updates.filter((u: any) => u.SuperOddsType === 'OVERUNDER' && u.MarketParameters === 'line=1.5'); console.log(JSON.stringify(globalUpdates.slice(0, 5), null, 2)); })

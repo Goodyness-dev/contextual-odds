@@ -10,6 +10,21 @@ export interface ScoutReport {
   teamAffinity?: 'HOME' | 'AWAY' | 'NEUTRAL'; // Identifies which team is driving the momentum
 }
 
+import fs from 'fs';
+import path from 'path';
+
+// Load precomputed cache if available to make demo lightning fast
+let precomputedCache: Record<number, any> | null = null;
+try {
+  const cachePath = path.join(__dirname, 'scout_precomputed.json');
+  if (fs.existsSync(cachePath)) {
+    precomputedCache = JSON.parse(fs.readFileSync(cachePath, 'utf8'));
+    logger.info(`Loaded ${Object.keys(precomputedCache || {}).length} precomputed scout reports for instant simulation.`);
+  }
+} catch (e) {
+  logger.warn('No precomputed scout cache found, will use live LLM.');
+}
+
 // In-memory cache to avoid spamming the LLM every 60s for the same match
 const reportCache = new Map<string, { report: ScoutReport, timestamp: number }>();
 const CACHE_TTL = 15 * 60 * 1000; // 15 minutes
@@ -22,10 +37,15 @@ export class ScoutAgent {
     matchMinute: number
   ): Promise<ScoutReport> {
     
+    // INSTANT RETURN: If we precomputed this minute for the demo match, return it instantly!
+    if (precomputedCache && precomputedCache[matchMinute] && matchId === '18185036') {
+      return precomputedCache[matchMinute];
+    }
+    
     const historicalNewsEvent = getHistoricalNews(matchMinute);
     const cacheKey = `${matchId}-${historicalNewsEvent}`;
     
-    // Check cache
+    // Check dynamic cache
     const cached = reportCache.get(cacheKey);
     if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
       return cached.report;

@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { DivergenceResult } from './divergence';
+import { DivergenceResult, ReasoningChain } from './divergence';
 import { SIGNAL_CONFIG } from './signal-config';
 import { logger } from '../lib/logger';
 
@@ -21,6 +21,7 @@ export interface AgentPrediction {
   explorerUrl: string;
   status: 'PENDING' | 'CORRECT' | 'INCORRECT';
   explanation: string;
+  reasoningChain?: ReasoningChain;
   resolvedAt?: string;
   finalScore?: { home: number; away: number };
 }
@@ -60,7 +61,8 @@ class PaperLedger {
       solanaTxSignature: signature,
       explorerUrl,
       status: 'PENDING',
-      explanation: signal.explanation
+      explanation: signal.explanation,
+      ...(signal.reasoningChain ? { reasoningChain: signal.reasoningChain } : {})
     };
 
     this.predictions.set(prediction.id, prediction);

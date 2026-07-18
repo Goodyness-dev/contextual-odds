@@ -1,0 +1,674 @@
+{
+  "0": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: Both teams are probing for weaknesses, slightly increasing the tempo.",
+    "impactScore": -0.1,
+    "trustModifier": 1,
+    "teamAffinity": "HOME"
+  },
+  "1": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The match is settling into a rhythm with solid defensive organization from both sides.",
+    "impactScore": 0.2,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "2": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The pace of the game has slowed down significantly as teams engage in a tactical midfield battle.",
+    "impactScore": 0.6,
+    "trustModifier": 0.9,
+    "teamAffinity": "HOME"
+  },
+  "3": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The current attacking momentum strongly indicates an imminent goal-scoring opportunity.",
+    "impactScore": -0.8,
+    "trustModifier": 0.8,
+    "teamAffinity": "HOME"
+  },
+  "4": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The current attacking momentum strongly indicates an imminent goal-scoring opportunity.",
+    "impactScore": -0.8,
+    "trustModifier": 0.8,
+    "teamAffinity": "HOME"
+  },
+  "5": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: A routine sequence of play with balanced possession and no clear advantage.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "HOME"
+  },
+  "6": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: Both teams are probing for weaknesses, slightly increasing the tempo.",
+    "impactScore": -0.1,
+    "trustModifier": 1,
+    "teamAffinity": "AWAY"
+  },
+  "7": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: This is a neutral phase of play with no immediate attacking threat.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "AWAY"
+  },
+  "8": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: A routine sequence of play with balanced possession and no clear advantage.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "HOME"
+  },
+  "9": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: This is a neutral phase of play with no immediate attacking threat.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "AWAY"
+  },
+  "10": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The match is settling into a rhythm with solid defensive organization from both sides.",
+    "impactScore": 0.2,
+    "trustModifier": 1,
+    "teamAffinity": "HOME"
+  },
+  "11": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: A routine sequence of play with balanced possession and no clear advantage.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "12": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: This is a neutral phase of play with no immediate attacking threat.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "13": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The match is settling into a rhythm with solid defensive organization from both sides.",
+    "impactScore": 0.2,
+    "trustModifier": 1,
+    "teamAffinity": "AWAY"
+  },
+  "14": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: A routine sequence of play with balanced possession and no clear advantage.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "15": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The current attacking momentum strongly indicates an imminent goal-scoring opportunity.",
+    "impactScore": -0.8,
+    "trustModifier": 0.8,
+    "teamAffinity": "HOME"
+  },
+  "16": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The current attacking momentum strongly indicates an imminent goal-scoring opportunity.",
+    "impactScore": -0.8,
+    "trustModifier": 0.8,
+    "teamAffinity": "NEUTRAL"
+  },
+  "17": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: A routine sequence of play with balanced possession and no clear advantage.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "HOME"
+  },
+  "18": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: Both teams are probing for weaknesses, slightly increasing the tempo.",
+    "impactScore": -0.1,
+    "trustModifier": 1,
+    "teamAffinity": "HOME"
+  },
+  "19": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The match is settling into a rhythm with solid defensive organization from both sides.",
+    "impactScore": 0.2,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "20": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: A routine sequence of play with balanced possession and no clear advantage.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "21": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: Both teams are probing for weaknesses, slightly increasing the tempo.",
+    "impactScore": -0.1,
+    "trustModifier": 1,
+    "teamAffinity": "AWAY"
+  },
+  "22": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: This is a neutral phase of play with no immediate attacking threat.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "23": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The current attacking momentum strongly indicates an imminent goal-scoring opportunity.",
+    "impactScore": -0.8,
+    "trustModifier": 0.8,
+    "teamAffinity": "HOME"
+  },
+  "24": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The current attacking momentum strongly indicates an imminent goal-scoring opportunity.",
+    "impactScore": -0.8,
+    "trustModifier": 0.8,
+    "teamAffinity": "NEUTRAL"
+  },
+  "25": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The match is settling into a rhythm with solid defensive organization from both sides.",
+    "impactScore": 0.2,
+    "trustModifier": 1,
+    "teamAffinity": "AWAY"
+  },
+  "26": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: A routine sequence of play with balanced possession and no clear advantage.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "AWAY"
+  },
+  "27": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: Both teams are probing for weaknesses, slightly increasing the tempo.",
+    "impactScore": -0.1,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "28": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The match is settling into a rhythm with solid defensive organization from both sides.",
+    "impactScore": 0.2,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "29": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: A routine sequence of play with balanced possession and no clear advantage.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "30": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: Both teams are probing for weaknesses, slightly increasing the tempo.",
+    "impactScore": -0.1,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "31": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The match is settling into a rhythm with solid defensive organization from both sides.",
+    "impactScore": 0.2,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "32": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: A routine sequence of play with balanced possession and no clear advantage.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "33": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: Both teams are probing for weaknesses, slightly increasing the tempo.",
+    "impactScore": -0.1,
+    "trustModifier": 1,
+    "teamAffinity": "AWAY"
+  },
+  "34": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The match is settling into a rhythm with solid defensive organization from both sides.",
+    "impactScore": 0.2,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "35": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: A routine sequence of play with balanced possession and no clear advantage.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "HOME"
+  },
+  "36": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The pace of the game has slowed down significantly as teams engage in a tactical midfield battle.",
+    "impactScore": 0.6,
+    "trustModifier": 0.9,
+    "teamAffinity": "HOME"
+  },
+  "37": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The match is settling into a rhythm with solid defensive organization from both sides.",
+    "impactScore": 0.2,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "38": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: A routine sequence of play with balanced possession and no clear advantage.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "AWAY"
+  },
+  "39": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The current attacking momentum strongly indicates an imminent goal-scoring opportunity.",
+    "impactScore": -0.8,
+    "trustModifier": 0.8,
+    "teamAffinity": "AWAY"
+  },
+  "40": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: This own goal has injected chaos into the game, significantly increasing the likelihood of more goals being scored.",
+    "impactScore": -0.8,
+    "trustModifier": 0.6,
+    "teamAffinity": "AWAY"
+  },
+  "41": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: This own goal has injected chaos into the game, significantly increasing the likelihood of more goals being scored.",
+    "impactScore": -0.8,
+    "trustModifier": 0.6,
+    "teamAffinity": "NEUTRAL"
+  },
+  "42": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: Both teams are probing for weaknesses, slightly increasing the tempo.",
+    "impactScore": -0.1,
+    "trustModifier": 1,
+    "teamAffinity": "AWAY"
+  },
+  "43": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The match is settling into a rhythm with solid defensive organization from both sides.",
+    "impactScore": 0.2,
+    "trustModifier": 1,
+    "teamAffinity": "AWAY"
+  },
+  "44": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: A routine sequence of play with balanced possession and no clear advantage.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "HOME"
+  },
+  "45": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: Both teams are probing for weaknesses, slightly increasing the tempo.",
+    "impactScore": -0.1,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "46": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The match is settling into a rhythm with solid defensive organization from both sides.",
+    "impactScore": 0.2,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "47": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: A routine sequence of play with balanced possession and no clear advantage.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "48": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: Both teams are probing for weaknesses, slightly increasing the tempo.",
+    "impactScore": -0.1,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "49": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The match is settling into a rhythm with solid defensive organization from both sides.",
+    "impactScore": 0.2,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "50": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: A routine sequence of play with balanced possession and no clear advantage.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "AWAY"
+  },
+  "51": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: Both teams are probing for weaknesses, slightly increasing the tempo.",
+    "impactScore": -0.1,
+    "trustModifier": 1,
+    "teamAffinity": "AWAY"
+  },
+  "52": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The match is settling into a rhythm with solid defensive organization from both sides.",
+    "impactScore": 0.2,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "53": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: A routine sequence of play with balanced possession and no clear advantage.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "54": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: Both teams are probing for weaknesses, slightly increasing the tempo.",
+    "impactScore": -0.1,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "55": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The match is settling into a rhythm with solid defensive organization from both sides.",
+    "impactScore": 0.2,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "56": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: A routine sequence of play with balanced possession and no clear advantage.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "57": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The pace of the game has slowed down significantly as teams engage in a tactical midfield battle.",
+    "impactScore": 0.6,
+    "trustModifier": 0.9,
+    "teamAffinity": "NEUTRAL"
+  },
+  "58": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The pace of the game has slowed down significantly as teams engage in a tactical midfield battle.",
+    "impactScore": 0.6,
+    "trustModifier": 0.9,
+    "teamAffinity": "NEUTRAL"
+  },
+  "59": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: A routine sequence of play with balanced possession and no clear advantage.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "60": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: Both teams are probing for weaknesses, slightly increasing the tempo.",
+    "impactScore": -0.1,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "61": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The match is settling into a rhythm with solid defensive organization from both sides.",
+    "impactScore": 0.2,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "62": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: A routine sequence of play with balanced possession and no clear advantage.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "63": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: Both teams are probing for weaknesses, slightly increasing the tempo.",
+    "impactScore": -0.1,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "64": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: This is a neutral phase of play with no immediate attacking threat.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "65": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The pace of the game has slowed down significantly as teams engage in a tactical midfield battle.",
+    "impactScore": 0.6,
+    "trustModifier": 0.9,
+    "teamAffinity": "HOME"
+  },
+  "66": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: Both teams are probing for weaknesses, slightly increasing the tempo.",
+    "impactScore": -0.1,
+    "trustModifier": 1,
+    "teamAffinity": "HOME"
+  },
+  "67": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The match is settling into a rhythm with solid defensive organization from both sides.",
+    "impactScore": 0.2,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "68": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: A routine sequence of play with balanced possession and no clear advantage.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "69": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: Both teams are probing for weaknesses, slightly increasing the tempo.",
+    "impactScore": -0.1,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "70": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The match is settling into a rhythm with solid defensive organization from both sides.",
+    "impactScore": 0.2,
+    "trustModifier": 1,
+    "teamAffinity": "AWAY"
+  },
+  "71": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: A routine sequence of play with balanced possession and no clear advantage.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "72": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: Both teams are probing for weaknesses, slightly increasing the tempo.",
+    "impactScore": -0.1,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "73": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The match is settling into a rhythm with solid defensive organization from both sides.",
+    "impactScore": 0.2,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "74": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: A routine sequence of play with balanced possession and no clear advantage.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "AWAY"
+  },
+  "75": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The current attacking momentum strongly indicates an imminent goal-scoring opportunity.",
+    "impactScore": -0.8,
+    "trustModifier": 0.8,
+    "teamAffinity": "AWAY"
+  },
+  "76": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The pace of the game has slowed down significantly as teams engage in a tactical midfield battle.",
+    "impactScore": 0.6,
+    "trustModifier": 0.9,
+    "teamAffinity": "NEUTRAL"
+  },
+  "77": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: A routine sequence of play with balanced possession and no clear advantage.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "78": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: Both teams are probing for weaknesses, slightly increasing the tempo.",
+    "impactScore": -0.1,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "79": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The pace of the game has slowed down significantly as teams engage in a tactical midfield battle.",
+    "impactScore": 0.6,
+    "trustModifier": 0.9,
+    "teamAffinity": "HOME"
+  },
+  "80": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The pace of the game has slowed down significantly as teams engage in a tactical midfield battle.",
+    "impactScore": 0.6,
+    "trustModifier": 0.9,
+    "teamAffinity": "HOME"
+  },
+  "81": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: This is a neutral phase of play with no immediate attacking threat.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "82": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The match is settling into a rhythm with solid defensive organization from both sides.",
+    "impactScore": 0.2,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "83": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: A routine sequence of play with balanced possession and no clear advantage.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "84": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: This is a neutral phase of play with no immediate attacking threat.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "85": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The match is settling into a rhythm with solid defensive organization from both sides.",
+    "impactScore": 0.2,
+    "trustModifier": 1,
+    "teamAffinity": "HOME"
+  },
+  "86": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: A routine sequence of play with balanced possession and no clear advantage.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "87": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: Both teams are probing for weaknesses, slightly increasing the tempo.",
+    "impactScore": -0.1,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "88": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The match is settling into a rhythm with solid defensive organization from both sides.",
+    "impactScore": 0.2,
+    "trustModifier": 1,
+    "teamAffinity": "HOME"
+  },
+  "89": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: A routine sequence of play with balanced possession and no clear advantage.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "90": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: Both teams are probing for weaknesses, slightly increasing the tempo.",
+    "impactScore": -0.1,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "91": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The match is settling into a rhythm with solid defensive organization from both sides.",
+    "impactScore": 0.2,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "92": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: A routine sequence of play with balanced possession and no clear advantage.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "93": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: This is a neutral phase of play with no immediate attacking threat.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "NEUTRAL"
+  },
+  "94": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: The pace of the game has slowed down significantly as teams engage in a tactical midfield battle.",
+    "impactScore": 0.6,
+    "trustModifier": 0.9,
+    "teamAffinity": "NEUTRAL"
+  },
+  "95": {
+    "matchId": "18185036",
+    "sentimentSummary": "[ORACLE NLP]: A routine sequence of play with balanced possession and no clear advantage.",
+    "impactScore": 0,
+    "trustModifier": 1,
+    "teamAffinity": "HOME"
+  }
+}

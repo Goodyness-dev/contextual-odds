@@ -16,6 +16,27 @@ interface SignalStatus {
   };
 }
 
+interface ReasoningStep {
+  agent: 'TXODDS' | 'QUANT' | 'SCOUT' | 'RISK' | 'SOLANA';
+  label: string;
+  value: number;
+  detail: string;
+}
+
+interface ReasoningChain {
+  steps: ReasoningStep[];
+  rawMarketOdds: number;
+  rawMarketProb: number;
+  poissonModelProb: number;
+  blendedBaseProb: number;
+  nlpMultiplier: number;
+  nlpImpactPercent: number;
+  finalAdjustedProb: number;
+  finalTrueOdds: number;
+  edgePercent: number;
+  kellyFraction: number;
+}
+
 interface AgentPrediction {
   id: string;
   matchId: string;
@@ -33,6 +54,7 @@ interface AgentPrediction {
   explorerUrl: string;
   status: 'PENDING' | 'CORRECT' | 'INCORRECT';
   explanation: string;
+  reasoningChain?: ReasoningChain;
   resolvedAt?: string;
   finalScore?: { home: number; away: number };
 }
@@ -85,6 +107,17 @@ export default function SignalDashboard() {
   const [fixtures, setFixtures] = useState<Fixture[]>([]);
   const [selectedFixtureId, setSelectedFixtureId] = useState<string>('');
   
+  const handleFixtureSelect = (id: string) => {
+    setSelectedFixtureId(id);
+    if (id) {
+      fetch('/api/signal/simulate/preload', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ fixtureId: Number(id) })
+      }).catch(console.error);
+    }
+  };
+
   const [oddsDifferenceThreshold, setOddsDifferenceThreshold] = useState<string>('0.2');
   const [narrativeStream, setNarrativeStream] = useState<Exclude<SignalStatus['latestEvaluation'], undefined>[]>([]);
   const streamEndRef = useRef<HTMLDivElement>(null);
@@ -164,6 +197,7 @@ export default function SignalDashboard() {
     setSummary(null);
     
     // Stream live updates
+    let localPredictionCount = 0;
     for (let i = 0; i < 96; i++) {
       await fetch(`/api/signal/simulate`, { 
         method: 'POST',
@@ -189,8 +223,14 @@ export default function SignalDashboard() {
           });
         }
       }
+      let hasNewEvent = false;
       if (predictionsRes.ok) {
         const newPredictions = await predictionsRes.json();
+        if (newPredictions.length > localPredictionCount) {
+           hasNewEvent = true;
+           localPredictionCount = newPredictions.length;
+        }
+        
         setPredictions(prev => {
           const thresholdVal = parseFloat(oddsDifferenceThreshold) || 0;
           newPredictions.forEach((p: AgentPrediction) => {
@@ -230,7 +270,11 @@ export default function SignalDashboard() {
       }
       if (summaryRes.ok) setSummary(await summaryRes.json());
       
-      if (i < 95) await new Promise(resolve => setTimeout(resolve, 500));
+      if (i < 95) {
+        // Target ~45 seconds total: 91 normal ticks * 350ms + 5 anomalies * 2000ms = ~42 seconds + network overhead = ~45 seconds
+        const delay = hasNewEvent ? 2000 : 350; 
+        await new Promise(resolve => setTimeout(resolve, delay));
+      }
     }
     setIsSimulating(false);
   };
@@ -361,8 +405,8 @@ export default function SignalDashboard() {
             <div className="flex-grow w-full">
               <label className="block text-[10px] tracking-widest text-[#555] uppercase mb-2">Select Target Match</label>
               <select 
-                value={selectedFixtureId}
-                onChange={(e) => setSelectedFixtureId(e.target.value)}
+                value={selectedFixtureId || ''}
+                onChange={(e) => handleFixtureSelect(e.target.value)}
                 className="w-full bg-[#0A0A0A] border border-[#333] text-white px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors"
               >
                 <option value="">-- Choose a Match --</option>
@@ -374,17 +418,8 @@ export default function SignalDashboard() {
               </select>
             </div>
             
-            <div className="flex-grow w-full md:w-32 flex-none">
-              <label className="block text-[10px] tracking-widest text-[#555] uppercase mb-2">Min Odds Gap</label>
-              <input 
-                type="number"
-                step="0.1"
-                min="0.1"
-                value={oddsDifferenceThreshold}
-                onChange={(e) => setOddsDifferenceThreshold(e.target.value)}
-                className="w-full bg-[#0A0A0A] border border-[#333] text-white px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors"
-                placeholder="2.0"
-              />
+            <div className="flex-grow w-full md:w-32 flex-none" style={{ display: 'none' }}>
+              {/* Removed Min Odds Gap input entirely to rely purely on backend EV calculations */}
             </div>
             
             <button
@@ -420,11 +455,11 @@ export default function SignalDashboard() {
           <section className="bg-blue-900/10 border border-blue-500/30 p-8 relative overflow-hidden animate-in fade-in duration-1000">
              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl"></div>
              <h2 className="text-2xl font-bold text-white tracking-tight uppercase mb-2">Final Financial Yield</h2>
-             <p className="text-[#aaa] text-sm mb-8">Calculated based on a flat $1.00 stake per prediction.</p>
+             <p className="text-[#aaa] text-sm mb-8">Calculated based on a flat $1.00 per prediction.</p>
              
              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                <div className="bg-[#0A0A0A] p-6 border border-[#333]">
-                 <div className="text-xs tracking-widest text-[#888] uppercase mb-2">Total Staked</div>
+                 <div className="text-xs tracking-widest text-[#888] uppercase mb-2">Total Predicted</div>
                  <div className="text-3xl font-bold text-white">${totalInvested.toFixed(2)}</div>
                </div>
                <div className="bg-[#0A0A0A] p-6 border border-[#333]">
@@ -468,10 +503,10 @@ export default function SignalDashboard() {
                   <div className="text-[#555] italic">System idle. Deploy scout to begin surveillance...</div>
                 ) : (
                   narrativeStream.map((log, idx) => (
-                    <div key={idx} className="flex flex-col gap-1 border-l-2 border-[#333] pl-3 py-1">
+                    <div key={idx} className="flex flex-col gap-1 border-l-2 border-[#333] pl-3 py-1 animate-in fade-in slide-in-from-bottom-2 duration-300">
                       <div className="text-[10px] text-[#666]">Minute {log.matchMinute} | Score: {log.score}</div>
                       <div className="text-[#ccc] whitespace-pre-wrap leading-relaxed">
-                        <TypewriterText text={log.scoutReport?.sentimentSummary || ''} />
+                        {log.scoutReport?.sentimentSummary || ''}
                       </div>
                     </div>
                   ))
@@ -531,15 +566,13 @@ export default function SignalDashboard() {
             
             {loading ? (
               <div className="animate-pulse h-24 bg-[#111] border border-[#333]"></div>
-            ) : predictions.filter(p => (p.oddsDifference || 0) >= parseFloat(oddsDifferenceThreshold || '0')).length === 0 ? (
+            ) : predictions.length === 0 ? (
               <div className="text-center py-16 border border-[#333] border-dashed">
-                <p className="text-[#555] text-xs">Waiting for a context gap anomaly...</p>
+                <p className="text-[#555] text-xs">Waiting for a positive EV context anomaly...</p>
               </div>
             ) : (
               <div className="grid gap-6">
-                {predictions
-                  .filter(pred => (pred.oddsDifference || 0) >= parseFloat(oddsDifferenceThreshold || '0'))
-                  .map(pred => (
+                {predictions.map(pred => (
                   <PredictionCard key={pred.id} prediction={pred} />
                 ))}
               </div>
@@ -609,6 +642,7 @@ function ArenaStat({ label, value, highlight = 'text-white' }: { label: string, 
 }
 
 function PredictionCard({ prediction }: { prediction: AgentPrediction }) {
+  const [expanded, setExpanded] = useState(false);
   const isWon = prediction.status === 'CORRECT';
   const isLost = prediction.status === 'INCORRECT';
   const isOpen = prediction.status === 'PENDING';
@@ -625,6 +659,24 @@ function PredictionCard({ prediction }: { prediction: AgentPrediction }) {
   const isTeamMarket = marketParts.length === 3;
   const line1 = isTeamMarket ? `${marketParts[0]} ${marketParts[1]}`.toUpperCase() : marketParts[0].toUpperCase();
   const line2 = isTeamMarket ? marketParts[2] : marketParts[1];
+
+  const chain = prediction.reasoningChain;
+
+  const agentColors: Record<string, string> = {
+    TXODDS: '#888',
+    QUANT: '#60a5fa',
+    RISK: '#a78bfa',
+    SCOUT: '#34d399',
+    SOLANA: '#f472b6',
+  };
+
+  const agentLabels: Record<string, string> = {
+    TXODDS: 'TxOdds Feed',
+    QUANT: 'Quant Agent',
+    RISK: 'Risk Manager',
+    SCOUT: 'Scout NLP',
+    SOLANA: 'Solana',
+  };
 
   return (
     <div className="border border-[#333] bg-[#0A0A0A] flex flex-col text-[#FAFAF7] hover:border-[#666] transition-colors relative overflow-hidden">
@@ -683,6 +735,141 @@ function PredictionCard({ prediction }: { prediction: AgentPrediction }) {
           <span>{riskLine}</span>
         </div>
       </div>
+
+      {/* Explain This Trade Button */}
+      {chain && (
+        <button 
+          onClick={() => setExpanded(!expanded)}
+          className="w-full p-3 border-b border-[#333] bg-[#0D0D0D] hover:bg-[#161616] transition-all duration-200 flex items-center justify-center gap-2 group cursor-pointer"
+        >
+          <svg 
+            className={`w-3 h-3 text-purple-400 transition-transform duration-300 ${expanded ? 'rotate-180' : ''}`}
+            fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+          <span className="text-[10px] tracking-[0.25em] text-purple-400 font-bold uppercase group-hover:text-purple-300 transition-colors">
+            {expanded ? 'COLLAPSE REASONING' : 'EXPLAIN THIS TRADE'}
+          </span>
+          <svg 
+            className={`w-3 h-3 text-purple-400 transition-transform duration-300 ${expanded ? 'rotate-180' : ''}`}
+            fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+      )}
+
+      {/* Expandable Reasoning Chain Panel */}
+      {chain && expanded && (
+        <div className="border-b border-[#333] bg-gradient-to-b from-[#0A0A1A] to-[#0A0A0A] overflow-hidden"
+             style={{ animation: 'slideDown 0.3s ease-out' }}>
+          
+          {/* Header */}
+          <div className="px-6 pt-5 pb-3 border-b border-[#222]">
+            <div className="flex items-center gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse"></div>
+              <span className="text-[10px] tracking-[0.25em] text-purple-400 font-bold uppercase">Agent Reasoning Pipeline</span>
+            </div>
+            <p className="text-[10px] text-[#555] mt-1">Each step shows how the swarm transformed raw market data into an actionable edge.</p>
+          </div>
+
+          {/* Waterfall Chart */}
+          <div className="px-6 py-5">
+            <div className="space-y-0">
+              {chain.steps.map((step, i) => {
+                const probDisplay = step.agent === 'SOLANA' 
+                  ? '✓' 
+                  : step.agent === 'RISK' && step.label === 'Edge Calculation'
+                    ? `${(step.value * 100).toFixed(1)}% EV`
+                    : `${(step.value * 100).toFixed(1)}%`;
+                
+                const barWidth = step.agent === 'SOLANA' 
+                  ? 100 
+                  : step.agent === 'RISK' && step.label === 'Edge Calculation'
+                    ? Math.min(100, Math.max(10, step.value * 100 * 2))
+                    : Math.min(100, Math.max(5, step.value * 100));
+
+                const color = agentColors[step.agent] || '#666';
+                
+                return (
+                  <div key={i} className="relative">
+                    {/* Connector Line */}
+                    {i > 0 && (
+                      <div className="flex justify-center py-0">
+                        <div className="w-px h-3 bg-[#333]"></div>
+                      </div>
+                    )}
+                    
+                    <div className="flex items-center gap-3 group/step">
+                      {/* Step Number Node */}
+                      <div 
+                        className="w-7 h-7 rounded-full flex items-center justify-center text-[9px] font-bold flex-shrink-0 border"
+                        style={{ 
+                          borderColor: color, 
+                          color: color,
+                          backgroundColor: `${color}15`
+                        }}
+                      >
+                        {i + 1}
+                      </div>
+
+                      {/* Content */}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="text-[9px] font-bold tracking-widest uppercase" style={{ color }}>
+                            {agentLabels[step.agent]}
+                          </span>
+                          <span className="text-[10px] text-[#666]">→</span>
+                          <span className="text-[10px] font-bold text-white">{step.label}</span>
+                          <span className="ml-auto text-xs font-mono font-bold" style={{ color }}>
+                            {probDisplay}
+                          </span>
+                        </div>
+                        
+                        {/* Visual Bar */}
+                        <div className="h-1.5 bg-[#1a1a2e] rounded-full overflow-hidden mb-1.5">
+                          <div 
+                            className="h-full rounded-full transition-all duration-700"
+                            style={{ 
+                              width: `${barWidth}%`, 
+                              backgroundColor: color,
+                              opacity: 0.7
+                            }}
+                          />
+                        </div>
+                        
+                        {/* Detail Text */}
+                        <p className="text-[9px] text-[#555] leading-relaxed">{step.detail}</p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Summary Stats Row */}
+          <div className="grid grid-cols-4 border-t border-[#222] bg-[#080812]">
+            <div className="p-3 text-center border-r border-[#222]">
+              <div className="text-[8px] text-[#555] tracking-widest uppercase mb-1">Market Odds</div>
+              <div className="text-sm font-bold text-[#888] font-mono">{chain.rawMarketOdds.toFixed(2)}</div>
+            </div>
+            <div className="p-3 text-center border-r border-[#222]">
+              <div className="text-[8px] text-[#555] tracking-widest uppercase mb-1">True Odds</div>
+              <div className="text-sm font-bold text-white font-mono">{chain.finalTrueOdds.toFixed(2)}</div>
+            </div>
+            <div className="p-3 text-center border-r border-[#222]">
+              <div className="text-[8px] text-[#555] tracking-widest uppercase mb-1">Edge</div>
+              <div className="text-sm font-bold text-green-400 font-mono">+{chain.edgePercent.toFixed(1)}%</div>
+            </div>
+            <div className="p-3 text-center">
+              <div className="text-[8px] text-[#555] tracking-widest uppercase mb-1">Kelly %</div>
+              <div className="text-sm font-bold text-purple-400 font-mono">{(chain.kellyFraction * 100).toFixed(1)}%</div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Footer Prediction Status */}
       <div className="p-4 px-6 flex justify-between items-center bg-[#0C0D0E]">
