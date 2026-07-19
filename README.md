@@ -1,4 +1,4 @@
-![Contextual Odds Hero](./hero.png)
+
 
 # 🧠 Contextual Odds Signal Swarm (Autonomous AI Sports Betting Agent)
 
