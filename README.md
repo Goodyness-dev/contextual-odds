@@ -6,7 +6,7 @@ Welcome to the **Contextual Odds Signal Swarm**, an autonomous, multi-agent AI s
 
 Built entirely in TypeScript as a Monorepo (Next.js Frontend + Express Node.js Backend), this architecture deploys a "Swarm" of specialized agents that evaluate live football (soccer) matches. It mathematically fuses quantitative Poisson distribution modeling with real-time NLP sentiment analysis of live commentary to identify Positive Expected Value (+EV) trades, and commits the immutable ledger of those trades to the Solana Blockchain.
 
-If you are a judge for the hackathon or a fellow degenerate quantitative developer diving into the code, this document explicitly breaks down the technical anatomy of the Swarm, the exact math used, how the agents interact, and how we achieve alpha against bookmaker odds.
+If you are a judge for the hackathon or a fellow degenerate quantitative developer diving into the code, this document explicitly breaks down the technical anatomy of the Swarm, the exact math used, how the agents interact, and how I achieve alpha against bookmaker odds.
 
 ---
 
@@ -49,7 +49,7 @@ graph TD
 ### The "Context Gap" Thesis
 The core philosophy of Contextual Odds is that **pure math is blind to context, and pure sentiment is blind to probability.** 
 
-Bookmakers heavily rely on automated math models (like Poisson distribution) to set live lines. However, these models cannot "watch" the game. If a team is heavily dominating possession, pinning the opponent back, and generating dangerous attacks that don't result in a shot on target, the math model won't shift the odds fast enough. We call this delay the **Context Gap**.
+Bookmakers heavily rely on automated math models (like Poisson distribution) to set live lines. However, these models cannot "watch" the game. If a team is heavily dominating possession, pinning the opponent back, and generating dangerous attacks that don't result in a shot on target, the math model won't shift the odds fast enough. I call this delay the **Context Gap**.
 
 To exploit this, the Swarm orchestration engine (`SwarmOrchestrator` in `backend/src/signal/signal-agent.ts`) runs a continuous event loop (`tick()`) that polls the TxLine API for live fixtures. For every live match, the engine dispatches three agents:
 
@@ -65,7 +65,7 @@ The Scout Agent is responsible for ingesting live match commentary and returning
 
 **Execution Flow:**
 1. A live commentary event is fetched for the current match minute.
-2. We inject this event into a strict JSON-enforced prompt to Groq's Llama-3.1 API.
+2. I inject this event into a strict JSON-enforced prompt to Groq's Llama-3.1 API.
 3. The LLM acts as a quantitative scout and returns a `ScoutReport`.
 
 **Output Matrix (`ScoutReport`):** 
@@ -121,7 +121,7 @@ If a trade has a positive EV (Edge > 0%) and survives the risk gauntlet, the Ris
 
 Talk is cheap, and historical betting records are easily manipulated. To ensure absolute cryptographic proof of the Swarm's performance, every single generated signal is asynchronously written to the **Solana Devnet**.
 
-We utilize the `@coral-xyz/anchor` and `@solana/web3.js` libraries alongside the standard SPL Memo program. 
+I utilize the `@coral-xyz/anchor` and `@solana/web3.js` libraries alongside the standard SPL Memo program. 
 
 **On-Chain Execution Flow:**
 1. When a trade is executed, the parameters are compacted into a JSON payload:
@@ -134,7 +134,7 @@ We utilize the `@coral-xyz/anchor` and `@solana/web3.js` libraries alongside the
       "prediction": "EXECUTE"
    }
    ```
-2. For verification, we hash the payload using `SHA-256`.
+2. For verification, I hash the payload using `SHA-256`.
 3. An on-chain transaction is fired invoking the Memo program (`createMemoInstruction`), permanently burning the prediction string and the hash onto the block.
 4. The resulting transaction signature and Solana Explorer URL are attached back to the local `paper-ledger.ts` state, fully auditable by anyone in the world.
 
@@ -142,7 +142,7 @@ We utilize the `@coral-xyz/anchor` and `@solana/web3.js` libraries alongside the
 
 ## 📊 On-Chain Performance & Devnet Results
 
-We don't just theorize; we verify. During our active weekend testing window, the Swarm autonomously monitored 14 high-liquidity matches, orchestrating thousands of NLP evaluations against live TxOdds data.
+I don't just theorize; I verify. During my active weekend testing window, the Swarm autonomously monitored 14 high-liquidity matches, orchestrating thousands of NLP evaluations against live TxOdds data.
 
 **Devnet Benchmarks (Weekend Session):**
 - **Signals Fired:** 47
@@ -160,12 +160,12 @@ You can verify the Oracle's automated writes directly on the Solana Devnet Explo
 
 ## 🎙️ The Interactive Oracle Chat (`POST /api/signal/chat`)
 
-Because staring at terminal logs can be boring, we built a **conversational Oracle interface** directly into the API and Dashboard. This isn't just a basic chatbot—it is deeply aware of the Swarm's live internal state.
+Because staring at terminal logs can be boring, I built a **conversational Oracle interface** directly into the API and Dashboard. This isn't just a basic chatbot—it is deeply aware of the Swarm's live internal state.
 
 Using Llama-3.1, users can interrogate the Swarm directly from the Next.js frontend about its trading logic. The `/chat` endpoint dynamically injects the real-time context of the `paperLedger`, the number of open trades, and the stringified rationale of the 3 most recently executed trades into the system prompt. 
 
 You can ask the terminal: *"Why did you bet Over 2.5 in the Arsenal match?"*
-And the Swarm will respond in colloquial football terms: *"Arsenal's xG decayed significantly, but my Scout detected a chaotic momentum shift following a 70th-minute red card. TxOdds priced the line at 2.10, but our Context Blend calculated true odds at 1.85. We extracted an 11.5% edge and anchored the execution."*
+And the Swarm will respond in colloquial football terms: *"Arsenal's xG decayed significantly, but my Scout detected a chaotic momentum shift following a 70th-minute red card. TxOdds priced the line at 2.10, but my Context Blend calculated true odds at 1.85. I extracted an 11.5% edge and anchored the execution."*
 
 ---
 
@@ -230,8 +230,8 @@ Navigate to `localhost:3000` to watch the Swarm hunt for Alpha in real time!
 
 ## ⚠️ Failure Modes & Known Limitations
 
-Every serious quantitative system has blind spots. To be fully transparent, here is where our current Swarm architecture breaks down:
+Every serious quantitative system has blind spots. To be fully transparent, here is where my current Swarm architecture breaks down:
 
-1. **The "Flash Event" Race Condition:** Bookmaker odds via TxLine update in milliseconds after a goal, but text commentary APIs (our Scout data source) often lag by 30-60 seconds. In this window, the Quant Agent is calculating EV against post-goal odds using pre-goal context, occasionally triggering false positive "Value" signals before the Veto engine catches up.
+1. **The "Flash Event" Race Condition:** Bookmaker odds via TxLine update in milliseconds after a goal, but text commentary APIs (my Scout data source) often lag by 30-60 seconds. In this window, the Quant Agent is calculating EV against post-goal odds using pre-goal context, occasionally triggering false positive "Value" signals before the Veto engine catches up.
 2. **Context Hallucinations:** While Llama-3.1 is remarkably good at sentiment extraction, highly sarcastic or ambiguous human commentary ("What a brilliant disaster that was for the defense") can occasionally cause the Scout Agent to assign an inverted `impactScore`.
-3. **Illiquid Market Slippage:** Synthesizing the probability space for extreme edge cases (like a 6th goal in a 5-0 blowout) mathematically works, but in the real world, sportsbooks heavily juice the vig (margin) on these illiquid markets. Our calculated EV doesn't fully account for the dynamic spread widening sportsbooks implement in the 88th minute.
+3. **Illiquid Market Slippage:** Synthesizing the probability space for extreme edge cases (like a 6th goal in a 5-0 blowout) mathematically works, but in the real world, sportsbooks heavily juice the vig (margin) on these illiquid markets. My calculated EV doesn't fully account for the dynamic spread widening sportsbooks implement in the 88th minute.

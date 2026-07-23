@@ -39,13 +39,17 @@ app.use(errorMiddleware);
 // ─── Server Boot ──────────────────────────────────────────────────────────────
 const PORT = config.PORT;
 
-app.listen(PORT, () => {
-  logger.info({ port: PORT, env: config.NODE_ENV }, 'Elastico Signal API running');
-}).on('error', (err: NodeJS.ErrnoException) => {
-  if (err.code === 'EADDRINUSE') {
-    logger.error({ port: PORT }, `Port ${PORT} is already in use`);
-  } else {
-    logger.error({ err }, 'Server failed to start');
-  }
-  process.exit(1);
-});
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+  app.listen(PORT, () => {
+    logger.info({ port: PORT, env: config.NODE_ENV }, 'Elastico Signal API running');
+  }).on('error', (err: NodeJS.ErrnoException) => {
+    if (err.code === 'EADDRINUSE') {
+      logger.error({ port: PORT }, `Port ${PORT} is already in use`);
+    } else {
+      logger.error({ err }, 'Server failed to start');
+    }
+    process.exit(1);
+  });
+}
+
+export default app;
